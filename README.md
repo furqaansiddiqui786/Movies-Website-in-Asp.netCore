@@ -4,7 +4,7 @@
    * User Area
    * Admin Area
    
-## Watch the ** Live Demo ** of the Project Here [Live Demo of Project](https://www.youtube.com/watch?v=ghEtilLi3qg) 
+## Watch the __Live Demo__ of the Project Here [Live Demo of Project](https://www.youtube.com/watch?v=ghEtilLi3qg) 
    
  Admin Area | User Area
  ---------- | ----------
