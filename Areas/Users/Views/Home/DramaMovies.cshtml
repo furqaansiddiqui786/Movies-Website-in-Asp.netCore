@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MoviesDB>
+@{
+    ViewData["Title"] = "DramaMovies";
+}
+
+<h1>Drama Movies</h1>
+<hr />
+@if (Model.Count() > 0)
+{
+
+    <div class="row">
+        @foreach (var movie in Model)
+        {
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="item m-4">
+                    <a asp-action="Detail" asp-route-id="@movie.Id">
+                        @{
+                            var base64 = Convert.ToBase64String(movie.Banner);
+                            var imgsrc = string.Format("data:image/jpg; base64,{0}", base64);
+                        }
+                        <img src="@imgsrc" width="200px" height="260px" title=@movie.Name />
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="item m-4">
+                    <a asp-action="Login" asp-controller="Account" asp-area="Identity">
+                        @{
+                            var base64 = Convert.ToBase64String(movie.Banner);
+                            var imgsrc = string.Format("data:image/jpg; base64,{0}", base64);
+                        }
+                        <img src="@imgsrc" width="200px" height="260px" title=@movie.Name />
+                    </a>
+                </div>
+            }
+
+
+        }
+    </div>
+}
+else
+{
+    <h3>No Movies Available In This Category</h3>
+}

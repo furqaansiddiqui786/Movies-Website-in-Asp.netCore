@@ -1,0 +1,113 @@
+﻿@model MoviesDB
+@{
+    ViewData["Title"] = "Movie";
+}
+
+<div class="text-white container">
+    <h3>@Model.Name</h3>
+    <hr />
+
+    <div>
+        @{
+            var link = "https://www.youtube.com/embed/";
+            var model = Model.MovieLink;
+            var movielink = link + model;
+        }
+        <iframe width="100%" height="500" src="@movielink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div class="detailbox row">
+
+        <div class="col-md-3 col-sm-10">
+            @{
+                var base64 = Convert.ToBase64String(Model.Banner);
+                var imgsrc = string.Format("data:image/jpg; base64,{0}", base64);
+            }
+            <img src="@imgsrc" width="200px" height="260px" title=@Model.Name />
+        </div>
+
+        <div class="col-md-9 col-sm-10">
+            <div class="row pr-3">
+                <div class="col-md-7">
+                    <h4>@Model.Name</h4>
+                    <p class="lead">@Model.About</p>
+                    <h6>
+                        @if (Model.Category == "0")
+                        {
+                            <h6><span class="text-danger">Category</span> :  Action</h6>
+                        }
+                        @if (Model.Category == "1")
+                        {
+                            <h6><span class="text-danger">Category</span> : Adventure</h6>
+                        }
+                        @if (Model.Category == "2")
+                        {
+                            <h6><span class="text-danger">Category</span> :  Horror</h6>
+                        }
+                        @if (Model.Category == "3")
+                        {
+                            <h6><span class="text-danger">Category</span> :  Drama</h6>
+                        }
+                        @if (Model.Category == "4")
+                        {
+                            <h6><span class="text-danger">Category</span> :  Romance</h6>
+                        }
+                        @if (Model.Category == "5")
+                        {
+                            <h6><span class="text-danger">Category</span> :  Comedy</h6>
+                        }
+
+                    </h6>
+                   
+                </div>
+                <div class="col-md-5">
+                    <h6></h6><br />
+                    
+                    <h6><span class="text-danger">Director</span> : @Model.Director</h6>
+                    <h6><span class="text-danger">Actors</span> : @Model.Actors</h6>
+                    <h6><span class="text-danger">Producer</span> : @Model.Producer</h6>
+                    <h6><span class="text-danger">Runtime</span> : @Model.Watchtime</h6>
+                    <h6><span class="text-danger">Release</span> : @Model.Release</h6>
+                    <h6><span class="text-danger">Ratings</span> : 
+                        @if (Model.Ratings == "0")
+                        {
+                            <label title="No star rating">No Ratings</label>
+                        }
+                        @if (Model.Ratings == "1")
+                        {
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="one star rating" />
+                        }
+                        @if (Model.Ratings == "2")
+                        {
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="two star rating" />
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="two star rating" />
+                        }
+                        @if (Model.Ratings == "3")
+                        {
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="three star rating" />
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="three star rating" />
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="three star rating" />
+                        }
+                        @if (Model.Ratings == "4")
+                        {
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="four star rating" />
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="four star rating" />
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="four star rating" />
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="four star rating" />
+                        }
+                        @if (Model.Ratings == "5")
+                        {
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="five star rating" />
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="five star rating" />
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="five star rating" />
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="five star rating" />
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="five star rating" />
+                        }
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+</div>

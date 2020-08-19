@@ -1,0 +1,77 @@
+﻿@using MovieDB.Utility 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MovieDB</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/786e687912.js" crossorigin="anonymous"></script>
+</head>
+<body class="fullbody">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-3 customnav">
+            <div class="container">
+                <img srcset="/Images/netflix.png" width="150px" height="60px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse float-left collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Movies
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" asp-action="ActionMovies" asp-controller="Home" asp-area="Users">Action</a>
+
+                                <a class="dropdown-item" asp-action="AdventureMovies" asp-controller="Home" asp-area="Users">Adventure</a>
+
+                                <a class="dropdown-item" asp-action="HorrorMovies" asp-controller="Home" asp-area="Users">Horror</a>
+
+                                <a class="dropdown-item" asp-action="DramaMovies" asp-controller="Home" asp-area="Users">Drama</a>
+
+                                <a class="dropdown-item" asp-action="RomanceMovies" asp-controller="Home" asp-area="Users">Romance</a>
+
+                                <a class="dropdown-item" asp-action="ComedyMovies" asp-controller="Home" asp-area="Users">Comedy</a>
+                            </div>
+                        </li>
+                        @if (User.IsInRole(SD.Admin))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Manage</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Identity" asp-controller="Account" asp-action="Register">Add users</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3 container">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted">
+        <div class="container">
+            &copy; 2020 - MovieDB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

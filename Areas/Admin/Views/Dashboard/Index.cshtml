@@ -1,0 +1,119 @@
+﻿@model IEnumerable<MoviesDB>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-white">Admin Dashboard</h1>
+<hr />
+
+<div class="container text-white">
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="text-white">All Movies</h3>
+        </div>
+        <div class="col-md-6">
+            <a asp-action="Add" asp-controller="Dashboard" asp-area="Admin" class="btn btn-danger float-right"><i class="fas fa-plus"></i>&nbsp; Add Movies</a>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-striped text-white">
+            <tr class="table table-secondary">
+                <th>@Html.DisplayNameFor(m => m.Name)</th>
+                <th>@Html.DisplayNameFor(m => m.Category)</th>
+                <th>@Html.DisplayNameFor(m => m.Release)</th>
+                <th>@Html.DisplayNameFor(m => m.Ratings)</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => movie.Name)</td>
+                    <td>
+                        @if (movie.Category == "0")
+                        {
+                            <label>Action</label>
+                        }
+                        @if (movie.Category == "1")
+                        {
+                            <label>Adventure</label>
+                        }
+                        @if (movie.Category == "2")
+                        {
+                            <label>Horror</label>
+                        }
+                        @if (movie.Category == "3")
+                        {
+                            <label>Drama</label>
+                        }
+                        @if (movie.Category == "4")
+                        {
+                            <label>Romance</label>
+                        }
+                        @if (movie.Category == "5")
+                        {
+                            <label>Comedy</label>
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(m => movie.Release)</td>
+                    <td>
+                        @if (movie.Ratings == "0")
+                        {
+                            <label title="No star rating">No Ratings</label>
+                        }
+                        @if (movie.Ratings == "1")
+                        {
+                            <img srcset="/Images/Star.png"  width="30px" height="30px" title="one star rating" />
+                        }
+                        @if (movie.Ratings == "2")
+                        {
+                            <img srcset="/Images/Star.png"  width="30px" height="30px" title="two star rating" />
+                            <img srcset="/Images/Star.png"  width="30px" height="30px" title="two star rating" />
+                        }
+                        @if (movie.Ratings == "3")
+                        {
+                            <img srcset="/Images/Star.png" width="30px" height="30px"  title="three star rating"/>
+                            <img srcset="/Images/Star.png"  width="30px" height="30px" title="three star rating"/>
+                            <img srcset="/Images/Star.png"  width="30px" height="30px" title="three star rating"/>
+                        }
+                        @if (movie.Ratings == "4")
+                        {
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="four star rating"/>
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="four star rating"/>
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="four star rating"/>
+                            <img srcset="/Images/Star.png" width="30px" height="30px" title="four star rating"/>
+                        }
+                        @if (movie.Ratings == "5")
+                        {
+                            <img srcset="/Images/Star.png"  width="30px" height="30px" title="five star rating"/>
+                            <img srcset="/Images/Star.png"  width="30px" height="30px" title="five star rating"/>
+                            <img srcset="/Images/Star.png"  width="30px" height="30px" title="five star rating"/>
+                            <img srcset="/Images/Star.png"  width="30px" height="30px" title="five star rating"/>
+                            <img srcset="/Images/Star.png"  width="30px" height="30px" title="five star rating"/>
+                        }
+                    </td>
+                    
+                    <td class="text-right">
+                        <a class="btn btn-success" asp-action="Movie" asp-route-id="@movie.Id"><i class="fas fa-list"></i></a>
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@movie.Id"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@movie.Id"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h4 class="text-white-50">
+            Ohh!! looks like we dont have any movies for our viewers, Lets add some movies to keep our users entertained.
+        </h4>
+    }
+
+</div>
+
+
