@@ -10,6 +10,6 @@
  ---------- | ----------
  Admin can add managers to manage the website | Users can login to watch movies
  Admin can add movies to the site and can also edit or remove movies | users can search movies based on their categories
- Admin have the capacity to remove other managers or employee users
+ Admin have the ability to remove other managers or employee users
  
  
