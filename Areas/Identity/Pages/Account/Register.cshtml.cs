@@ -95,16 +95,31 @@ namespace MovieDB.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    if(role == SD.Admin)
+                
+                // for adding roles to the db comment this code after creating your admin user to avoid creating more admin users
+                    if(!await _roleManager.RoleExistsAsync(SD.Admin))
                     {
-                        await _userManager.AddToRoleAsync(user, SD.Admin);
+                        await _roleManager.CreateAsync(new IdentityRole(SD.Admin));
+                    }
+                    
+                    if(!await _roleManager.RoleExistsAsync(SD.User))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.User));
+                    }
+                    
+                    await _userManager.AddToRoleAsync(user, SD.Admin);
+                
+                
+                    /*if(role == SD.Admin)
+                    {
+                    /    await _userManager.AddToRoleAsync(user, SD.Admin);
                     }
                     else
                     {
                         await _userManager.AddToRoleAsync(user, SD.User);
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
-                    }
+                    }*/
 
 
                     _logger.LogInformation("User created a new account with password.");
